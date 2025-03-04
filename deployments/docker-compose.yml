@@ -1,0 +1,18 @@
+version: '4.23'
+
+services:
+  server:
+    build:
+      context: ../
+      dockerfile: build/server/Dockerfile
+    container_name: wisdom_server
+    env_file: .env
+
+  client:
+    build:
+      context: ../
+      dockerfile: build/client/Dockerfile
+    container_name: wisdom_client
+    depends_on:
+      - server
+    env_file: .env
