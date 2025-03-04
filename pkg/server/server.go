@@ -95,6 +95,9 @@ func (s *Server) Start() error {
 
 func (s *Server) Stop() error {
 	s.active = false
+	// should be canceled global context for all working goroutines
+	// but as we have poor functionality of only receiving fast response sleep will be enough (lazy)
+	time.Sleep(s.cfg.PowTimeout)
 	return nil
 }
 
